@@ -15,17 +15,39 @@ use eo::{
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
 struct Args {
-    /// path to pub files (or EOSERV data files)
+    /// path to directory containing pub files
     #[arg(short, long, default_value = "./pub")]
     pubs: String,
 
-    /// where to dump the JSON files
+    /// path to directory to dump the JSON files
     #[arg(short, long, default_value = "./pub_json")]
     output: String,
+
+    /// What type of server data files are you converting
+    #[arg(short, long, default_value = "original")]
+    server: ServerData,
+}
+
+#[derive(clap::ValueEnum, Clone, Debug, PartialEq, Eq)]
+enum ServerData {
+    Original,
+    EOSERV,
+    PubStudio,
 }
 
 fn main() {
     let args = Args::parse();
+
+    println!(
+        "             _    ___  _                 
+            | |  |__ \\(_)                
+ _ __  _   _| |__   ) |_ ___  ___  _ __  
+| '_ \\| | | | '_ \\ / /| / __|/ _ \\| '_ \\ 
+| |_) | |_| | |_) / /_| \\__ \\ (_) | | | |
+| .__/ \\__,_|_.__/____| |___/\\___/|_| |_|
+| |                  _/ |                
+|_|                 |__/\n"
+    );
 
     let class_file = load_class_file(&args.pubs);
     let drop_file = match load_drop_file(&args.pubs) {
@@ -134,6 +156,8 @@ fn generate_class_json(class_file: &EcfFile, path: &str) -> Result<(), Box<dyn s
         id += 1;
     }
 
+    println!("✨ Generated {} class files", id - 1);
+
     Ok(())
 }
 
@@ -191,6 +215,8 @@ fn generate_spell_json(spell_file: &EsfFile, path: &str) -> Result<(), Box<dyn s
 
         id += 1;
     }
+
+    println!("✨ Generated {} spell files", id - 1);
 
     Ok(())
 }
@@ -251,12 +277,14 @@ fn generate_item_json(item_file: &EifFile, path: &str) -> Result<(), Box<dyn std
         });
 
         std::fs::write(
-            dir.join(format!("{:0>4}.json", id)),
+            dir.join(format!("{:0>4}.json", id - 1)),
             serde_json::to_string_pretty(&json).unwrap(),
         )?;
 
         id += 1;
     }
+
+    println!("✨ Generated {} item files", id - 1);
 
     Ok(())
 }
@@ -330,6 +358,8 @@ fn generate_npc_json(
         id += 1;
     }
 
+    println!("✨ Generated {} npc files", id - 1);
+
     Ok(())
 }
 
@@ -384,6 +414,8 @@ fn generate_shop_json(shop_file: &ShopFile, path: &str) -> Result<(), Box<dyn st
         id += 1;
     }
 
+    println!("✨ Generated {} shop files", id - 1);
+
     Ok(())
 }
 
@@ -429,6 +461,8 @@ fn generate_inn_json(inn_file: &InnFile, path: &str) -> Result<(), Box<dyn std::
 
         id += 1;
     }
+
+    println!("✨ Generated {} inn files", id - 1);
 
     Ok(())
 }
@@ -481,6 +515,8 @@ fn generate_skill_master_json(
 
         id += 1;
     }
+
+    println!("✨ Generated {} skill master files", id - 1);
 
     Ok(())
 }
