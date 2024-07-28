@@ -264,6 +264,8 @@ fn generate_item_json(item_file: &EifFile, path: &str) -> Result<(), Box<dyn std
             "spec1": item.spec1,
             "spec2": item.spec2,
             "spec3": item.spec3,
+            "levelReq": item.level_req,
+            "classReq": item.class_req,
             "strReq": item.str_req,
             "intReq": item.int_req,
             "wisReq": item.wis_req,
@@ -277,7 +279,7 @@ fn generate_item_json(item_file: &EifFile, path: &str) -> Result<(), Box<dyn std
         });
 
         std::fs::write(
-            dir.join(format!("{:0>4}.json", id - 1)),
+            dir.join(format!("{:0>4}.json", id)),
             serde_json::to_string_pretty(&json).unwrap(),
         )?;
 
@@ -338,6 +340,8 @@ fn generate_npc_json(
             "elementDamage": npc.element_damage,
             "elementWeakness": npc.element_weakness,
             "elementWeaknessDamage": npc.element_weakness_damage,
+            "level": npc.level,
+            "experience": npc.experience,
             "drops": drop_record.drops.iter().map(|drop| {
                 json!({
                     "itemId": drop.item_id,
