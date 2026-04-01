@@ -1,0 +1,328 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/sorokya/pub2json/schema.json",
+  "title": "pub2json",
+  "description": "Schema for all pub2json output file formats",
+  "$defs": {
+    "ClassRecord": {
+      "type": "object",
+      "description": "A single class entry (ECF record)",
+      "required": ["name", "parent_type", "stat_group", "str", "intl", "wis", "agi", "con", "cha"],
+      "additionalProperties": false,
+      "properties": {
+        "name":        { "type": "string" },
+        "parent_type": { "type": "integer", "minimum": 0 },
+        "stat_group":  { "type": "integer", "minimum": 0 },
+        "str":         { "type": "integer", "minimum": 0 },
+        "intl":        { "type": "integer", "minimum": 0 },
+        "wis":         { "type": "integer", "minimum": 0 },
+        "agi":         { "type": "integer", "minimum": 0 },
+        "con":         { "type": "integer", "minimum": 0 },
+        "cha":         { "type": "integer", "minimum": 0 }
+      }
+    },
+
+    "SpellRecord": {
+      "type": "object",
+      "description": "A single spell entry (ESF record)",
+      "required": [
+        "name", "chant", "icon_id", "graphic_id", "tp_cost", "sp_cost", "cast_time",
+        "nature", "type", "element", "element_power", "target_restrict", "target_type",
+        "target_time", "max_skill_level", "min_damage", "max_damage", "accuracy", "evade",
+        "armor", "return_damage", "hp_heal", "tp_heal", "sp_heal",
+        "str", "intl", "wis", "agi", "con", "cha"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name":            { "type": "string" },
+        "chant":           { "type": "string" },
+        "icon_id":         { "type": "integer", "minimum": 0 },
+        "graphic_id":      { "type": "integer", "minimum": 0 },
+        "tp_cost":         { "type": "integer", "minimum": 0 },
+        "sp_cost":         { "type": "integer", "minimum": 0 },
+        "cast_time":       { "type": "integer", "minimum": 0 },
+        "nature":          { "type": "integer", "minimum": 0 },
+        "type":            { "type": "integer", "minimum": 0 },
+        "element":         { "type": "integer", "minimum": 0 },
+        "element_power":   { "type": "integer", "minimum": 0 },
+        "target_restrict": { "type": "integer", "minimum": 0 },
+        "target_type":     { "type": "integer", "minimum": 0 },
+        "target_time":     { "type": "integer", "minimum": 0 },
+        "max_skill_level": { "type": "integer", "minimum": 0 },
+        "min_damage":      { "type": "integer", "minimum": 0 },
+        "max_damage":      { "type": "integer", "minimum": 0 },
+        "accuracy":        { "type": "integer", "minimum": 0 },
+        "evade":           { "type": "integer", "minimum": 0 },
+        "armor":           { "type": "integer", "minimum": 0 },
+        "return_damage":   { "type": "integer", "minimum": 0 },
+        "hp_heal":         { "type": "integer", "minimum": 0 },
+        "tp_heal":         { "type": "integer", "minimum": 0 },
+        "sp_heal":         { "type": "integer", "minimum": 0 },
+        "str":             { "type": "integer", "minimum": 0 },
+        "intl":            { "type": "integer", "minimum": 0 },
+        "wis":             { "type": "integer", "minimum": 0 },
+        "agi":             { "type": "integer", "minimum": 0 },
+        "con":             { "type": "integer", "minimum": 0 },
+        "cha":             { "type": "integer", "minimum": 0 }
+      }
+    },
+
+    "ItemRecord": {
+      "type": "object",
+      "description": "A single item entry (EIF record)",
+      "required": [
+        "name", "graphic_id", "type", "subtype", "special",
+        "hp", "tp", "min_damage", "max_damage", "accuracy", "evade", "armor", "return_damage",
+        "str", "intl", "wis", "agi", "con", "cha",
+        "light_resistance", "dark_resistance", "earth_resistance",
+        "air_resistance", "water_resistance", "fire_resistance",
+        "spec1", "spec2", "spec3",
+        "level_requirement", "class_requirement",
+        "str_requirement", "int_requirement", "wis_requirement",
+        "agi_requirement", "con_requirement", "cha_requirement",
+        "element", "element_damage", "weight", "size"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name":              { "type": "string" },
+        "graphic_id":        { "type": "integer", "minimum": 0 },
+        "type":              { "type": "integer", "minimum": 0 },
+        "subtype":           { "type": "integer", "minimum": 0 },
+        "special":           { "type": "integer", "minimum": 0 },
+        "hp":                { "type": "integer", "minimum": 0 },
+        "tp":                { "type": "integer", "minimum": 0 },
+        "min_damage":        { "type": "integer", "minimum": 0 },
+        "max_damage":        { "type": "integer", "minimum": 0 },
+        "accuracy":          { "type": "integer", "minimum": 0 },
+        "evade":             { "type": "integer", "minimum": 0 },
+        "armor":             { "type": "integer", "minimum": 0 },
+        "return_damage":     { "type": "integer", "minimum": 0 },
+        "str":               { "type": "integer", "minimum": 0 },
+        "intl":              { "type": "integer", "minimum": 0 },
+        "wis":               { "type": "integer", "minimum": 0 },
+        "agi":               { "type": "integer", "minimum": 0 },
+        "con":               { "type": "integer", "minimum": 0 },
+        "cha":               { "type": "integer", "minimum": 0 },
+        "light_resistance":  { "type": "integer", "minimum": 0 },
+        "dark_resistance":   { "type": "integer", "minimum": 0 },
+        "earth_resistance":  { "type": "integer", "minimum": 0 },
+        "air_resistance":    { "type": "integer", "minimum": 0 },
+        "water_resistance":  { "type": "integer", "minimum": 0 },
+        "fire_resistance":   { "type": "integer", "minimum": 0 },
+        "spec1":             { "type": "integer", "minimum": 0 },
+        "spec2":             { "type": "integer", "minimum": 0 },
+        "spec3":             { "type": "integer", "minimum": 0 },
+        "level_requirement": { "type": "integer", "minimum": 0 },
+        "class_requirement": { "type": "integer", "minimum": 0 },
+        "str_requirement":   { "type": "integer", "minimum": 0 },
+        "int_requirement":   { "type": "integer", "minimum": 0 },
+        "wis_requirement":   { "type": "integer", "minimum": 0 },
+        "agi_requirement":   { "type": "integer", "minimum": 0 },
+        "con_requirement":   { "type": "integer", "minimum": 0 },
+        "cha_requirement":   { "type": "integer", "minimum": 0 },
+        "element":           { "type": "integer", "minimum": 0 },
+        "element_damage":    { "type": "integer", "minimum": 0 },
+        "weight":            { "type": "integer", "minimum": 0 },
+        "size":              { "type": "integer", "minimum": 0 }
+      }
+    },
+
+    "DropRecord": {
+      "type": "object",
+      "required": ["item_id", "min_amount", "max_amount", "rate"],
+      "additionalProperties": false,
+      "properties": {
+        "item_id":    { "type": "integer", "minimum": 0 },
+        "min_amount": { "type": "integer", "minimum": 0 },
+        "max_amount": { "type": "integer", "minimum": 0 },
+        "rate":       { "type": "integer", "minimum": 0 }
+      }
+    },
+
+    "NpcRecord": {
+      "type": "object",
+      "description": "A single NPC entry (ENF record), including drops and talk data",
+      "required": [
+        "name", "graphic_id", "race", "boss", "child", "type", "behavior_id",
+        "hp", "tp", "min_damage", "max_damage", "accuracy", "evade", "armor", "return_damage",
+        "element", "element_damage", "element_weakness", "element_weakness_damage",
+        "level", "experience", "drops", "talk_rate", "talk_messages"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name":                    { "type": "string" },
+        "graphic_id":              { "type": "integer", "minimum": 0 },
+        "race":                    { "type": "integer", "minimum": 0 },
+        "boss":                    { "type": "boolean" },
+        "child":                   { "type": "boolean" },
+        "type":                    { "type": "integer", "minimum": 0 },
+        "behavior_id":             { "type": "integer", "minimum": 0 },
+        "hp":                      { "type": "integer", "minimum": 0 },
+        "tp":                      { "type": "integer", "minimum": 0 },
+        "min_damage":              { "type": "integer", "minimum": 0 },
+        "max_damage":              { "type": "integer", "minimum": 0 },
+        "accuracy":                { "type": "integer", "minimum": 0 },
+        "evade":                   { "type": "integer", "minimum": 0 },
+        "armor":                   { "type": "integer", "minimum": 0 },
+        "return_damage":           { "type": "integer", "minimum": 0 },
+        "element":                 { "type": "integer", "minimum": 0 },
+        "element_damage":          { "type": "integer", "minimum": 0 },
+        "element_weakness":        { "type": "integer", "minimum": 0 },
+        "element_weakness_damage": { "type": "integer", "minimum": 0 },
+        "level":                   { "type": "integer", "minimum": 0 },
+        "experience":              { "type": "integer", "minimum": 0 },
+        "drops": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/DropRecord" }
+        },
+        "talk_rate":     { "type": "integer", "minimum": 0 },
+        "talk_messages": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+
+    "ShopTradeRecord": {
+      "type": "object",
+      "required": ["item_id", "buy_price", "sell_price", "max_amount"],
+      "additionalProperties": false,
+      "properties": {
+        "item_id":    { "type": "integer", "minimum": 0 },
+        "buy_price":  { "type": "integer", "minimum": 0 },
+        "sell_price": { "type": "integer", "minimum": 0 },
+        "max_amount": { "type": "integer", "minimum": 0 }
+      }
+    },
+
+    "ShopCraftIngredientRecord": {
+      "type": "object",
+      "required": ["item_id", "amount"],
+      "additionalProperties": false,
+      "properties": {
+        "item_id": { "type": "integer", "minimum": 0 },
+        "amount":  { "type": "integer", "minimum": 0 }
+      }
+    },
+
+    "ShopCraftRecord": {
+      "type": "object",
+      "required": ["item_id", "ingredients"],
+      "additionalProperties": false,
+      "properties": {
+        "item_id": { "type": "integer", "minimum": 0 },
+        "ingredients": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ShopCraftIngredientRecord" },
+          "maxItems": 4
+        }
+      }
+    },
+
+    "ShopRecord": {
+      "type": "object",
+      "description": "A single shop entry",
+      "required": ["behavior_id", "name", "min_level", "max_level", "class_requirement", "trades", "crafts"],
+      "additionalProperties": false,
+      "properties": {
+        "behavior_id":       { "type": "integer", "minimum": 0 },
+        "name":              { "type": "string" },
+        "min_level":         { "type": "integer", "minimum": 0 },
+        "max_level":         { "type": "integer", "minimum": 0 },
+        "class_requirement": { "type": "integer", "minimum": 0 },
+        "trades": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ShopTradeRecord" }
+        },
+        "crafts": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ShopCraftRecord" }
+        }
+      }
+    },
+
+    "InnQuestionRecord": {
+      "type": "object",
+      "required": ["question", "answer"],
+      "additionalProperties": false,
+      "properties": {
+        "question": { "type": "string" },
+        "answer":   { "type": "string" }
+      }
+    },
+
+    "InnRecord": {
+      "type": "object",
+      "description": "A single inn entry",
+      "required": [
+        "behavior_id", "name",
+        "spawn_map", "spawn_x", "spawn_y",
+        "sleep_map", "sleep_x", "sleep_y",
+        "alternate_spawn_enabled", "alternate_spawn_map", "alternate_spawn_x", "alternate_spawn_y",
+        "questions"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "behavior_id":            { "type": "integer", "minimum": 0 },
+        "name":                   { "type": "string" },
+        "spawn_map":              { "type": "integer", "minimum": 0 },
+        "spawn_x":                { "type": "integer", "minimum": 0 },
+        "spawn_y":                { "type": "integer", "minimum": 0 },
+        "sleep_map":              { "type": "integer", "minimum": 0 },
+        "sleep_x":                { "type": "integer", "minimum": 0 },
+        "sleep_y":                { "type": "integer", "minimum": 0 },
+        "alternate_spawn_enabled":{ "type": "boolean" },
+        "alternate_spawn_map":    { "type": "integer", "minimum": 0 },
+        "alternate_spawn_x":      { "type": "integer", "minimum": 0 },
+        "alternate_spawn_y":      { "type": "integer", "minimum": 0 },
+        "questions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/InnQuestionRecord" },
+          "maxItems": 3
+        }
+      }
+    },
+
+    "SkillMasterSkillRecord": {
+      "type": "object",
+      "required": [
+        "id", "level_requirement", "class_requirement", "price", "skill_requirements",
+        "str_requirement", "int_requirement", "wis_requirement",
+        "agi_requirement", "con_requirement", "cha_requirement"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id":                  { "type": "integer", "minimum": 0 },
+        "level_requirement":   { "type": "integer", "minimum": 0 },
+        "class_requirement":   { "type": "integer", "minimum": 0 },
+        "price":               { "type": "integer", "minimum": 0 },
+        "skill_requirements": {
+          "type": "array",
+          "items": { "type": "integer", "minimum": 0 },
+          "maxItems": 4
+        },
+        "str_requirement":     { "type": "integer", "minimum": 0 },
+        "int_requirement":     { "type": "integer", "minimum": 0 },
+        "wis_requirement":     { "type": "integer", "minimum": 0 },
+        "agi_requirement":     { "type": "integer", "minimum": 0 },
+        "con_requirement":     { "type": "integer", "minimum": 0 },
+        "cha_requirement":     { "type": "integer", "minimum": 0 }
+      }
+    },
+
+    "SkillMasterRecord": {
+      "type": "object",
+      "description": "A single skill master entry",
+      "required": ["behavior_id", "name", "min_level", "max_level", "class_requirement", "skills"],
+      "additionalProperties": false,
+      "properties": {
+        "behavior_id":       { "type": "integer", "minimum": 0 },
+        "name":              { "type": "string" },
+        "min_level":         { "type": "integer", "minimum": 0 },
+        "max_level":         { "type": "integer", "minimum": 0 },
+        "class_requirement": { "type": "integer", "minimum": 0 },
+        "skills": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/SkillMasterSkillRecord" }
+        }
+      }
+    }
+  }
+}
